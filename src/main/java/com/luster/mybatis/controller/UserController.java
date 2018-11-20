@@ -20,7 +20,6 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/all/{pageNum}/{pageSize}")
     public Object findAllUser(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
-
         return userService.findAllUser(pageNum, pageSize);
     }
 }

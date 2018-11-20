@@ -1,5 +1,6 @@
 package com.luster.mybatis.service.impl;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.luster.mybatis.dao.UserMapper;
 import com.luster.mybatis.pojo.User;
@@ -27,9 +28,11 @@ public class UserServiceImpl implements UserService {
      * pageSize 每页显示的数据条数
      * */
     @Override
-    public List<User> findAllUser(int pageNum, int pageSize) {
+    public Page<User> findAllUser(int pageNum, int pageSize) {
         //将参数传给这个方法就可以实现物理分页了，非常简单。
-        PageHelper.startPage(pageNum, pageSize);
-        return userMapper.selectAllUser();
+        Page<User> page = PageHelper.startPage(pageNum, pageSize);
+        userMapper.selectAllUser();
+        System.out.println(page.getTotal());
+        return page;
     }
 }
